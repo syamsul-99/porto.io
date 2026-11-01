@@ -456,7 +456,7 @@
                 <div class="vision mx-auto md:mx-0 mb-5"><svg viewBox="0 0 100 100" fill="none"><defs><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset="1" stop-color="#d7b370"/></linearGradient></defs><g class="spin"><circle cx="50" cy="50" r="44" stroke="#d7b370" stroke-width="1" stroke-dasharray="2 4"/><circle cx="50.0" cy="6.0" r="3.4" fill="#ef7938"/><circle cx="84.4" cy="22.6" r="3.4" fill="#4cc2f1"/><circle cx="92.9" cy="59.8" r="3.4" fill="#74c2a8"/><circle cx="69.1" cy="89.6" r="3.4" fill="#b08fc2"/><circle cx="30.9" cy="89.6" r="3.4" fill="#a5c83b"/><circle cx="7.1" cy="59.8" r="3.4" fill="#9fd6e3"/><circle cx="15.6" cy="22.6" r="3.4" fill="#fab632"/></g><circle cx="50" cy="50" r="33" stroke="#d7b370" stroke-width=".8" opacity=".7"/><path class="core" d="M50 28 L55.5 44.5 L72 50 L55.5 55.5 L50 72 L44.5 55.5 L28 50 L44.5 44.5Z" fill="url(#vg)"/></svg></div>
                 <p class="font-genshin text-g-gold text-sm tracking-[0.2em] uppercase mb-2">Traveler Profile</p>
                 <h1 class="font-genshin text-4xl md:text-5xl text-white title-glow name-shine mb-2">Syamsul Falah Imran</h1>
-                <p class="text-gray-400 font-medium tracking-wide">Mahasiswa Teknik Informatika</p>
+                <p class="role-line text-gray-400 font-medium tracking-wide"><span id="typewriter">Mahasiswa Teknik Informatika</span><span class="caret" aria-hidden="true"></span></p>
                 <div class="divider mt-5"></div>
             </div>
 
@@ -490,6 +490,7 @@
                     <span>Kontak</span>
                 </li>
             </ul>
+            <p class="kbd-hint">Tekan <kbd>1</kbd> sampai <kbd>6</kbd> untuk pindah bagian</p>
         </div>
 
         <!-- Kolom Kanan: Area Konten Dinamis -->
@@ -574,6 +575,13 @@
                     </div>
                     <div class="divider"></div>
                     
+                    <div class="mt-6">
+                        <label for="skill-search" class="sr-only">Cari keterampilan</label>
+                        <input id="skill-search" type="search" class="tool-input" placeholder="Cari skill, misalnya: python" autocomplete="off">
+                        <p id="skill-status" class="tool-status" aria-live="polite"></p>
+                        <p id="skill-empty" class="tool-empty" hidden>Skill itu belum tercatat di arsip.</p>
+                    </div>
+
                     <div class="mt-6 space-y-6">
                         <div>
                             <h3 class="text-white font-medium mb-3 flex items-center gap-2">
@@ -632,8 +640,16 @@
                     </div>
                     <div class="divider"></div>
                     
+                    <div id="project-filter" class="filter-bar mt-6" role="group" aria-label="Filter proyek">
+                        <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">Semua</button>
+                        <button type="button" class="filter-chip" data-filter="frontend" aria-pressed="false">Front-End</button>
+                        <button type="button" class="filter-chip" data-filter="hardware" aria-pressed="false">Hardware</button>
+                        <button type="button" class="filter-chip" data-filter="mobile" aria-pressed="false">Mobile</button>
+                    </div>
+                    <p id="project-status" class="tool-status" aria-live="polite">Menampilkan 3 dari 3 quest</p>
+
                     <div class="mt-6 space-y-6">
-                        <div class="bg-g-darker p-5 rounded border border-gray-700 relative overflow-hidden group">
+                        <div data-kategori="frontend" class="bg-g-darker p-5 rounded border border-gray-700 relative overflow-hidden group">
                             <div class="absolute top-0 left-0 w-1 h-full bg-g-gold"></div>
                             <h3 class="font-genshin text-xl text-white mb-1 group-hover:text-g-gold transition-colors">"FlipPlay" Landing Page</h3>
                             <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">Front-End Quest</p>
@@ -641,7 +657,7 @@
                                 Merancang dan membangun halaman landing page responsif bertema hiburan. Ditempa menggunakan artefak HTML semantik dan sihir Tailwind CSS untuk tampilan yang memukau di berbagai perangkat.
                             </p>
                         </div>
-                        <div class="bg-g-darker p-5 rounded border border-gray-700 relative overflow-hidden group">
+                        <div data-kategori="hardware" class="bg-g-darker p-5 rounded border border-gray-700 relative overflow-hidden group">
                             <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
                             <h3 class="font-genshin text-xl text-white mb-1 group-hover:text-purple-400 transition-colors">ESP32 Smart Monitor</h3>
                             <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">Hardware & Embedded Quest</p>
@@ -649,7 +665,7 @@
                                 Memprogram mikrokontroler ESP32 menggunakan C++ untuk sinkronisasi data waktu dan cuaca dunia nyata (via NTP). Mengintegrasikan sensor gerak dan umpan balik suara pasif layaknya mekanisme teka-teki ruang bawah tanah.
                             </p>
                         </div>
-                        <div class="bg-g-darker p-5 rounded border border-gray-700 relative overflow-hidden group">
+                        <div data-kategori="mobile" class="bg-g-darker p-5 rounded border border-gray-700 relative overflow-hidden group">
                             <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
                             <h3 class="font-genshin text-xl text-white mb-1 group-hover:text-blue-400 transition-colors">Aplikasi Mobile "Jejak Bencana"</h3>
                             <p class="text-xs text-gray-500 uppercase tracking-widest mb-3">Mobile Development Quest</p>
@@ -704,6 +720,36 @@
                                 </div>
                             </a>
                         </div>
+
+                        <form id="contact-form" class="mt-8" novalidate>
+                            <div class="divider"></div>
+                            <h3 class="font-genshin text-xl text-white mt-6 mb-4">Kirim pesan ke Guild</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="field">
+                                    <label for="cf-nama">Nama</label>
+                                    <input id="cf-nama" name="nama" type="text" class="tool-input" autocomplete="name" placeholder="Nama Traveler" aria-describedby="cf-nama-err">
+                                    <p id="cf-nama-err" class="field-error" role="alert"></p>
+                                </div>
+                                <div class="field">
+                                    <label for="cf-email">Email</label>
+                                    <input id="cf-email" name="email" type="email" class="tool-input" autocomplete="email" placeholder="nama@domain.com" aria-describedby="cf-email-err">
+                                    <p id="cf-email-err" class="field-error" role="alert"></p>
+                                </div>
+                                <div class="field md:col-span-2">
+                                    <label for="cf-pesan">Pesan</label>
+                                    <textarea id="cf-pesan" name="pesan" rows="4" maxlength="300" class="tool-input" placeholder="Tulis pesan atau tawaran quest..." aria-describedby="cf-pesan-err"></textarea>
+                                    <div class="field-meta">
+                                        <p id="cf-pesan-err" class="field-error" role="alert"></p>
+                                        <span id="cf-count" class="char-count">0/300</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-gold">Kirim lewat email</button>
+                                <button type="reset" class="btn-ghost">Bersihkan</button>
+                            </div>
+                            <p id="cf-status" class="form-status" role="status"></p>
+                        </form>
                     </div>
                 </div>
 
@@ -734,6 +780,7 @@
             
             <div id="typing-indicator" class="typing-indicator px-4 pb-2">Katheryne sedang mengecek arsip Guild...</div>
             
+            <div id="chat-chips" class="chat-chips" aria-label="Pertanyaan cepat"></div>
             <div class="chat-input-area">
                 <input type="text" id="chat-input" placeholder="Tanyakan quest atau elemen..." autocomplete="off">
                 <button id="send-btn" title="Kirim">
@@ -747,191 +794,6 @@
         </button>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuItems = document.querySelectorAll('.menu-item');
-            const displayContainer = document.getElementById('content-display');
-            const sections = document.querySelectorAll('.content-section');
-
-            menuItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const targetId = this.getAttribute('data-target');
-                    
-                    if (this.classList.contains('active')) return;
-
-                    menuItems.forEach(m => m.classList.remove('active'));
-                    this.classList.add('active');
-            displayContainer.style.setProperty('--el', getComputedStyle(this).getPropertyValue('--el'));
-
-                    displayContainer.classList.remove('visible');
-
-                    setTimeout(() => {
-                        sections.forEach(sec => sec.classList.add('hidden'));
-                        
-                        const targetSection = document.getElementById(`content-${targetId}`);
-                        if (targetSection) {
-                            targetSection.classList.remove('hidden');
-                            displayContainer.scrollTop = 0; 
-                        }
-
-                        displayContainer.classList.add('visible');
-                    }, 400); 
-                });
-            });
-
-                        const motes = document.querySelector('.motes');
-            const mc = ['#f3d68e','#f3d68e','#ffffff','#74c2a8','#4cc2f1','#b08fc2'];
-            for (let i = 0; i < 26; i++) {
-                const b = document.createElement('b');
-                const s = 5 + Math.random() * 9;
-                b.style.cssText = `left:${Math.random()*100}%;width:${s}px;height:${s}px;--c:${mc[i % mc.length]};--dx:${(Math.random()-.5)*120}px;animation-duration:${10+Math.random()*14}s;animation-delay:${-Math.random()*20}s`;
-                motes.appendChild(b);
-            }
-            document.addEventListener('pointerdown', e => {
-                for (let i = 0; i < 6; i++) {
-                    const s = document.createElement('b');
-                    s.className = 'burst';
-                    const a = Math.PI * 2 * i / 6 + Math.random() * .5, d = 28 + Math.random() * 28;
-                    s.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;--x:${Math.cos(a)*d}px;--y:${Math.sin(a)*d}px`;
-                    document.body.appendChild(s);
-                    setTimeout(() => s.remove(), 700);
-                }
-            });
-            document.addEventListener('pointermove', e => {
-                const r = document.documentElement.style;
-                r.setProperty('--mx', e.clientX / innerWidth - .5);
-                r.setProperty('--my', e.clientY / innerHeight - .5);
-            });
-
-            const chatToggleBtn = document.getElementById('chat-toggle-btn');
-            const chatWindow = document.getElementById('chat-window');
-            const closeChatBtn = document.getElementById('close-chat');
-            const chatInput = document.getElementById('chat-input');
-            const sendBtn = document.getElementById('send-btn');
-            const chatMessages = document.getElementById('chat-messages');
-            const typingIndicator = document.getElementById('typing-indicator');
-
-            let isChatOpen = false;
-            let chatHistory = [];
-
-            const systemPrompt = `Kamu adalah Katheryne, resepsionis Adventurers' Guild dari game Genshin Impact. Kamu saat ini ditugaskan untuk menjaga website portofolio/CV dari seorang Traveler bernama Syamsul Falah Imran.
-            Tugasmu adalah menjawab pertanyaan pengunjung tentang Syamsul menggunakan bahasa Indonesia yang sopan, ramah, dan khas Katheryne.
-            Selipkan istilah Genshin Impact secara natural (seperti quest, commission, vision, mora, domain, Teyvat, elemen, Traveler).
-            Selalu ucapkan "Ad astra abyssosque!" di awal percakapan atau sesekali saat memberi salam, namun jangan di setiap kalimat agar tidak kaku.
-            
-            Informasi lengkap tentang Traveler Syamsul:
-            - Profesi/Role: Mahasiswa Teknik Informatika di Universitas Muhammadiyah Malang (2022 - Sekarang, IPK 3.75).
-            - Fokus Keahlian (Vision/Elemen): Pengembangan Web & Mobile (Front-End), Jaringan Komputer, dan Sistem Tertanam (Embedded Systems).
-            - Skill Senjata (Teknologi): HTML, Tailwind CSS, React Native, Expo, TypeScript, JavaScript, Python, C++, Arduino, ESP32, Cisco Packet Tracer, Mikrotik.
-            - Soft Skills: Problem Solving, Teamwork, Adaptability, Time Management.
-            - Pengalaman Organisasi: Anggota HMIF Divisi PSDM (2023-Sekarang), Anggota Komunitas Robotik (2022-2023).
-            - Pengalaman Kerja: Freelance Web Developer (2023-Sekarang), Asisten Laboratorium (2024-Sekarang).
-            - Riwayat Quest (Proyek): 
-              1. "FlipPlay" Landing Page (Front-End).
-              2. ESP32 Smart Monitor (Hardware).
-              3. Aplikasi Mobile "Jejak Bencana" (Mobile).
-            - Lokasi (Region): Malang, Jawa Timur.
-            - Kontak: syamsul@email.com atau github.com/syamsul-imran.
-            
-            Jika ditanya hal di luar Syamsul atau Genshin, arahkan kembali dengan sopan ke topik portofolio Syamsul. Buat jawabanmu ringkas dan tidak terlalu panjang (maksimal 2 paragraf pendek).`;
-
-            function toggleChat() {
-                isChatOpen = !isChatOpen;
-                if (isChatOpen) {
-                    chatWindow.classList.add('open');
-                    setTimeout(() => chatInput.focus(), 300);
-                } else {
-                    chatWindow.classList.remove('open');
-                }
-            }
-
-            chatToggleBtn.addEventListener('click', toggleChat);
-            closeChatBtn.addEventListener('click', toggleChat);
-
-            function addMessage(text, isUser) {
-                const msgDiv = document.createElement('div');
-                msgDiv.className = `chat-message ${isUser ? 'msg-user' : 'msg-ai'}`;
-                msgDiv.innerHTML = text.replace(/\n/g, '<br>');
-                chatMessages.appendChild(msgDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-
-            async function fetchGeminiResponse(userText) {
-                typingIndicator.style.display = 'block';
-                chatHistory.push({ role: "user", parts: [{ text: userText }] });
-
-                const payload = {
-                    contents: chatHistory,
-                    systemInstruction: { parts: [{ text: systemPrompt }] },
-                };
-
-                const apiKey = "";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-
-                let attempt = 0;
-                let success = false;
-                let responseData = null;
-
-                while (attempt < 4 && !success) {
-                    try {
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-                        
-                        if (!response.ok) {
-                            if (response.status === 429) throw new Error("Rate limited");
-                            throw new Error(`API Error: ${response.status}`);
-                        }
-                        
-                        responseData = await response.json();
-                        success = true;
-                    } catch (error) {
-                        attempt++;
-                        if (attempt >= 4) {
-                            addMessage("Mohon maaf Traveler, jaringan komunikasi Guild (Ley Line) sedang mengalami gangguan. Silakan coba lagi nanti.", false);
-                            typingIndicator.style.display = 'none';
-                            chatHistory.pop();
-                            return;
-                        }
-                        await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
-                    }
-                }
-
-                typingIndicator.style.display = 'none';
-
-                if (responseData && responseData.candidates && responseData.candidates[0].content) {
-                    const aiText = responseData.candidates[0].content.parts[0].text;
-                    chatHistory.push({ role: "model", parts: [{ text: aiText }] });
-                    addMessage(aiText, false);
-                } else {
-                    addMessage("Maaf, Akasha System sedang dalam masa perbaikan.", false);
-                }
-            }
-
-            async function handleSend() {
-                const text = chatInput.value.trim();
-                if (!text) return;
-
-                chatInput.value = '';
-                addMessage(text, true);
-                
-                chatInput.disabled = true;
-                sendBtn.style.opacity = '0.5';
-                
-                await fetchGeminiResponse(text);
-                
-                chatInput.disabled = false;
-                sendBtn.style.opacity = '1';
-                chatInput.focus();
-            }
-
-            sendBtn.addEventListener('click', handleSend);
-            chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') handleSend();
-            });
-        });
-    </script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,154 @@
+/* extra.css — gaya untuk fitur interaktif (diimpor dari main.js, dibundle Vite)
+   Memakai variabel tema yang sudah ada: --g-gold dan --el (warna elemen per section). */
+
+[hidden] { display: none !important; }
+
+/* ---------- Typewriter ---------- */
+.role-line { min-height: 1.6em; }
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 3px;
+  vertical-align: -2px;
+  background: var(--g-gold);
+  animation: caret-blink 1s steps(1) infinite;
+}
+@keyframes caret-blink { 50% { opacity: 0; } }
+
+/* ---------- Fokus keyboard ---------- */
+.menu-item:focus-visible,
+.filter-chip:focus-visible,
+.btn-gold:focus-visible,
+.btn-ghost:focus-visible,
+.chat-chip:focus-visible,
+.chat-action:focus-visible,
+.tool-input:focus-visible {
+  outline: 2px solid var(--el, var(--g-gold));
+  outline-offset: 2px;
+}
+
+/* ---------- Petunjuk pintasan ---------- */
+.kbd-hint {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: rgba(236, 229, 206, 0.45);
+}
+.kbd-hint kbd {
+  display: inline-block;
+  min-width: 1.4em;
+  padding: 0 0.35em;
+  text-align: center;
+  font-family: inherit;
+  border: 1px solid rgba(215, 179, 112, 0.4);
+  border-radius: 4px;
+  color: var(--g-gold);
+}
+/* Disembunyikan di layar sentuh dan layar pendek (sidebar sudah mepet tingginya) */
+@media (hover: none), (max-height: 860px) { .kbd-hint { display: none; } }
+
+input[type="search"].tool-input::-webkit-search-cancel-button {
+  cursor: pointer;
+  filter: sepia(1) saturate(4) brightness(1.1);
+}
+
+/* ---------- Input & textarea ---------- */
+.tool-input {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #ece5ce;
+  background: rgba(16, 20, 30, 0.7);
+  border: 1px solid rgba(215, 179, 112, 0.35);
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.tool-input::placeholder { color: rgba(236, 229, 206, 0.4); }
+.tool-input:hover { border-color: rgba(215, 179, 112, 0.6); }
+.tool-input:focus { border-color: var(--g-gold); box-shadow: 0 0 0 3px rgba(215, 179, 112, 0.15); }
+.tool-input[aria-invalid="true"] { border-color: #e07a6b; }
+textarea.tool-input { resize: vertical; min-height: 6rem; }
+
+.tool-status { margin-top: 0.5rem; font-size: 0.8rem; color: rgba(236, 229, 206, 0.55); }
+.tool-empty { margin-top: 1rem; font-size: 0.9rem; color: #f0a094; }
+
+/* ---------- Filter proyek ---------- */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.filter-chip {
+  padding: 0.35rem 1rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: #ece5ce;
+  background: rgba(28, 34, 51, 0.8);
+  border: 1px solid rgba(215, 179, 112, 0.35);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.filter-chip:hover { border-color: var(--g-gold); }
+.filter-chip[aria-pressed="true"] {
+  color: #10141e;
+  font-weight: 600;
+  background: var(--g-gold);
+  border-color: var(--g-gold);
+}
+
+/* ---------- Form kontak ---------- */
+.field label { display: block; margin-bottom: 0.35rem; font-size: 0.8rem; color: #9ca3af; }
+.field-error { min-height: 1.1rem; margin-top: 0.25rem; font-size: 0.78rem; color: #f0a094; }
+.field-meta { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.char-count { margin-top: 0.25rem; font-size: 0.75rem; color: rgba(236, 229, 206, 0.5); white-space: nowrap; }
+
+.form-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+.btn-gold,
+.btn-ghost {
+  padding: 0.6rem 1.4rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.btn-gold {
+  font-weight: 600;
+  color: #10141e;
+  background: linear-gradient(180deg, #f3d68e, #d7b370);
+  border: 1px solid #f3d68e;
+}
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(215, 179, 112, 0.35); }
+.btn-ghost { color: #ece5ce; background: transparent; border: 1px solid rgba(215, 179, 112, 0.4); }
+.btn-ghost:hover { background: rgba(215, 179, 112, 0.12); }
+
+.form-status { min-height: 1.2rem; margin-top: 0.75rem; font-size: 0.85rem; }
+.form-status[data-state="ok"] { color: #8fd9b6; }
+.form-status[data-state="error"] { color: #f0a094; }
+
+/* ---------- Chat: tombol cepat & aksi ---------- */
+.chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 12px 0;
+  background: rgba(10, 12, 20, 0.9);
+}
+.chat-chip,
+.chat-action {
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: var(--g-gold-light, #f3d68e);
+  background: transparent;
+  border: 1px solid rgba(215, 179, 112, 0.45);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.chat-chip { padding: 4px 10px; }
+.chat-action { display: block; margin-top: 8px; padding: 3px 10px; }
+.chat-chip:hover,
+.chat-action:hover { background: rgba(215, 179, 112, 0.15); }
+
+/* ---------- Gerak dikurangi ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .caret { display: none; }
+}
